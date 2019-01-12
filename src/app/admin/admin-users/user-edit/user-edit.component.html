@@ -1,0 +1,49 @@
+<form [formGroup]="userForm">
+  <div class="col-sm-12 user-edit-container ">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label class="title" for="first_name">{{ 'admin.users.first_name' | translate }}</label>
+        <input type="text" formControlName="userFirstName" class="form-control form-control-sm"
+          id="first_name" placeholder="">
+      </div>
+      <div class="form-group ">
+        <label class="title" for="username">{{ 'admin.users.email' | translate }}</label>
+        <input type="email"formControlName="userEmail" class="form-control form-control-sm"
+          id="email" placeholder="">
+      </div>
+      <div class="form-group">
+          <label class="title" for="phone">{{ 'admin.users.phone' | translate }}</label>
+          <input type="text" class="form-control form-control-sm" formControlName="userPhone" id="phone"
+            placeholder="">
+        </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group ">
+        <label class="title" for="last_name">{{ 'admin.users.last_name' | translate }}</label>
+        <input type="text"  formControlName="userLastName" class="form-control form-control-sm"
+          id="last_name" placeholder="">
+      </div>
+      <div class="form-group ">
+        <label class="title" for="password">{{ 'admin.users.password' | translate }}</label>
+        <input type="text" formControlName="userPassword" class="form-control form-control-sm"
+          id="password" placeholder="">
+      </div>
+      <div class="form-group">
+        <label class="title" for="cuisine">{{ 'admin.users.roles' | translate }}</label>
+        <div class="">
+          <select id="cuisine" name="cuisineName" [(ngModel)]="role.selected" [ngModelOptions]="{standalone: true}" class="form-control form-control-sm">
+            <option *ngFor="let role of role.list" value="{{role}}">{{role}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div> 
+</form>
+
+<div class="col-sm-12" style="text-align: center">
+  <button aria-pressed="true" (click)="saveUser()" class="form-group-row btn-sm btn-outline-success active col-2" type="button">
+    <small className="text-muted"> <i class="fa fa-plus fa-lg"></i></small>
+    {{ 'admin.save' | translate}}
+  </button>
+</div>

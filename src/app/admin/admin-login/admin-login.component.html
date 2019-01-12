@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Sign In </h2>
+  
+      <!-- Login Form -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="email" id="login" class="second" name="email" placeholder="login" required>
+        <div class="form-error" *ngIf="isFieldInvalid('email')">
+          {{'app.email-not-valid' | translate}}
+        </div>
+        <input type="password"  formControlName="password" id="password" class="third" name="password" placeholder="password" required>
+        <div class="form-error" *ngIf="isFieldInvalid('password')">
+          {{'app.enter-password' | translate}}
+        </div>
+        <input type="submit" class="fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
+      </div>
+  
+    </div>
+  </div>

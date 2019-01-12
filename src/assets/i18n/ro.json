@@ -1,0 +1,107 @@
+{
+    "admin": {
+        "restaurant": {
+            "restaurant_details": "Detalii Restaurant",
+            "delivery_areas": "Zone de Livrare",
+            "menu": "Meniu",
+            "discount_codes": "Coduri discount",
+            "manager": "Manager",
+            "name": "Nume",
+            "description": "Descriere",
+            "min_order_val": "Valoare Comanda Minima",
+            "delivery": "Livrare",
+            "avg_time": "Timp mediu(minute)",
+            "standard_fee": "Taxa Standard(lei)",
+            "free_over": "Livrare Gratis(lei)",
+            "email_alerts": "Alerte Email",
+            "email": "Email",
+            "delivery_type": "Tip Livrare",
+            "show_in_search": "Afiseaza in Cautare",
+            "contact_phone_number": "Telefon de contact",
+            "just_restaurant_platform": "Doar pe platforma de hio.ro",
+            "address": "Adresa",
+            "cuisine": "Bucatarie",  
+            "select_cuisine_type": "Selecteaza tipul de bucatarie",
+            "address_details": {
+                "city": "Oras", 
+                "county": "Judet",
+                "address1": "Adresa 1",
+                "address2": "Adresa 2"
+            },
+            "payment_types": "Tipuri de plata",
+            "select_payment_type": "Modalitati de plata permise. Selectati macar una",
+            "payment_card": "Credit/Debit Card",
+            "payment_cash_on_delivery": "Plata la livrare",
+            "opening_hours": "Program Restaurant",
+            "opening_hours_tip": "Intervalul in care clientul poate initia o comanda. Formatul este de 24 ore. ex.",
+            "closed": "Inchis"
+        },
+        "delivery_area": {
+            "name": "Nume Zona",
+            "draw_zones": "Deseneaza Zona De Livrare",
+            "delivery_charge": "Taxa Livrare"
+        },
+        "restaurant_menu": {
+            "name": "Nume",
+            "description": "Descriere",
+            "price": "Pret",
+            "sold_out": "Fara Stoc"
+        },
+        "restaurant_opt": {
+            "name": "Nume optiune",
+            "price": "Pret optiune"
+        },
+        "restaurant_discount": {
+            "code": "Cod",
+            "reduction_type": "Tip reducere",
+            "value": "Valoare",
+            "active": "Activ",
+            "flat": "Valuta",
+            "precentage": "Procentaj(%)",
+            "note": "Codurile discount se vor aplica doar daca sunt bifate (active)"
+        },
+        "manager": {
+            "login_email": "Email Logare",
+            "note": " Allowing restaurant managers to edit this restaurant and/or menu will affect the current LIVE setup. Always exercise caution before granting these privelidges."
+        },
+        "users": {
+            "id": "ID",
+            "email": "Email",
+            "username": "Username",
+            "roles": "Roluri",
+            "users": "Utilizatori", 
+            "manager": "Manager",
+            "city_manager": "Manager Oras",
+            "admin": "Administrator",
+            "users_settings": "Setari utilizator",
+            "first_name": "Nume",
+            "last_name": "Prenume",
+            "phone": "Telefon",
+            "password": "Parola",
+            "active": "Activ",
+            "options": "Optiuni",
+            "user_deleted": "Utiliatorul a fost sters",
+            "status_changed": "Statusul utilizatorului a fost schimbat"
+        },
+        "delete": "Sterge",
+        "add": "Adauga",
+        "save": "Salveaza"
+    },
+    "program": {
+        "monday": "Luni",
+        "tuesday": "Marti",
+        "wednesday": "Miercuri",
+        "thursday": "Joi",
+        "friday": "Vineri",
+        "saturday": "Sambata",
+        "sunday": "Duminica"
+    },
+    "app": {
+        "yes": "Da",
+        "no": "Nu",
+        "enter-password": "Introduceti Parola",
+        "email-not-valid": "Email invalid",
+        "confirm-message": "Confirmare",
+        "do-you-want-delete": "Doriti sa stergeti elementele?"
+    }
+}

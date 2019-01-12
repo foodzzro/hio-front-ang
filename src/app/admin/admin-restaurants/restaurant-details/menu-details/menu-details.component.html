@@ -1,0 +1,10 @@
+<div class="menu-wrapper">
+
+    <div cdkDropList class="menu-list" (cdkDropListDropped)="drop($event)">
+        <app-menu-section *ngFor="let menu of menuItems" [menu]="menu" class="menu-box" cdkDrag></app-menu-section>
+    </div>
+
+    <div class="right-section">
+       <app-template-menu></app-template-menu>
+    </div>
+</div>

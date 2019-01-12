@@ -1,0 +1,13 @@
+.discount-table {
+    width:1000px;
+}
+
+.discount-table th {
+    color:#536c79;
+    border-top:none;
+}
+
+.help-block.discount {
+    font-size: 12px;
+    margin-left:10px;
+}

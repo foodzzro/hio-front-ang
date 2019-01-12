@@ -1,0 +1,11 @@
+<ngx-smart-modal #decisionModal identifier="decisionModal" customClass="decision-modal">
+  <h3 class="admin-h">{{ 'admin.users.users_settings' | translate }}</h3>
+  <br>
+  <p>{{ message | translate }}</p>
+
+  <button aria-pressed="true" (click)="doConfirm(true)" style="float:right; margin:0 10px; width:85px" class="btn-sm btn-block btn-outline-success active"
+  type="button">{{ 'app.yes' | translate}}</button>
+  <button aria-pressed="true" (click)="doConfirm(false)" style="float:right; margin:0; width:85px" class="btn-sm btn-block btn-outline-danger active"
+  type="button">{{ 'app.no' | translate}}</button>
+
+</ngx-smart-modal> 

@@ -1,0 +1,50 @@
+
+// Import styles
+@import "~ngx-toastr/toastr.css";
+@import "~ngx-smart-modal/ngx-smart-modal";
+@import "app/app-commons/styles/modal.scss";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.admin-h{
+    color: #536c79 !important;
+    margin: 10px 0;
+}
+
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+
+.admin-container {
+    background: white;
+    display: block;
+    margin-top:10px;
+    padding:10px;
+}
+
+.header-table .filter{
+    display: flex;
+    float:left;
+}
+.header-table .options {
+    float: right;
+}
+
+.header-table .filter div {
+    margin: 5px;
+}
+
+.table {
+    border-bottom: 1px solid lightgrey;
+}
+
+.nsm-dialog {
+    max-width: 800px !important;
+}
+
+.table-icon {
+    font-size:17px !important;
+    margin:0 5px;
+}

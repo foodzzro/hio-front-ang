@@ -1,0 +1,29 @@
+
+<div class="animated fadeIn">
+  <div class="row restaurant">
+    <div class="col-md-12 mb-4">
+
+      <h3 class="admin-h">Restaurant Name</h3>
+
+      <tabset>
+        <tab heading=" {{ 'admin.restaurant.restaurant_details' | translate }}">
+          <app-tab-details></app-tab-details>
+        </tab>
+        <tab heading="{{ 'admin.restaurant.delivery_areas' | translate }}">
+          <app-delivery-area></app-delivery-area>
+        </tab>
+        <tab heading="{{ 'admin.restaurant.menu' | translate }}">
+          <app-menu-details></app-menu-details>
+        </tab>
+        <tab heading="{{ 'admin.restaurant.discount_codes' | translate }}">
+          <app-discount-code></app-discount-code>
+        </tab>
+        <tab heading="{{ 'admin.restaurant.manager' | translate }}">
+            <app-manager></app-manager>
+        </tab>
+      </tabset>
+    </div>
+
+  </div>
+</div>
+  

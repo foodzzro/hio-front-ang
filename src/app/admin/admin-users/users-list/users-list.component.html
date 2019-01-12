@@ -1,0 +1,83 @@
+<div class="col-sm-12 admin-container">
+
+  <div class="header-tabs">
+    <ul class="tabs-container">
+      <li (click)="filterUsersByRole('ROLE_CLIENT')" [class.active]="userType=='ROLE_CLIENT'" class="tab">{{
+        'admin.users.users' | translate }}</li>
+      <li (click)="filterUsersByRole('ROLE_MANAGER')" [class.active]="userType=='ROLE_MANAGER'" class="tab">{{
+        'admin.users.manager' | translate }}</li>
+      <li (click)="filterUsersByRole('ROLE_MANAGER')" [class.active]="userType=='ROLE_MANAGER'" class="tab">{{
+        'admin.users.city_manager' | translate }}</li>
+      <li (click)="filterUsersByRole('ROLE_ADMIN')" [class.active]="userType=='ROLE_ADMIN'" class="tab">{{
+        'admin.users.admin' | translate }}</li>
+    </ul>
+  </div>
+
+  <div class="header-table">
+    <div class="filter">
+      <div class="form-group row">
+        <input type="text" class="form-control form-control-sm" placeholder="{{ 'admin.users.email' | translate }}"
+          (keyup)="filterTable()" filterKey="email" #filterInput>
+      </div>
+      <div class="form-group row">
+        <input type="text" class="form-control form-control-sm" placeholder="{{ 'admin.users.username' | translate }}"
+          (keyup)="filterTable()" filterKey="username" #filterInput>
+      </div>
+    </div>
+    <div class="options">
+        <button aria-pressed="true" (click)="openAddModal()" class="form-group-row btn-sm btn-outline-default active"
+        type="button">
+        <small className="text-muted"> <i class="fa fa-plus fa-lg"></i></small>
+        {{ 'admin.add' | translate}}
+      </button>
+    </div>
+  </div>
+  <!-- style="background: #E84545; color:white; border-color:#C33D3D" -->
+  <table class="table table-sm discount-table">
+    <thead>
+      <tr style="background: #f5f7f7">
+        <th>{{ 'admin.users.id' | translate }} </th>
+        <th>{{ 'admin.users.first_name' | translate }}</th>
+        <th>{{ 'admin.users.last_name' | translate }}</th>
+        <th>{{ 'admin.users.email' | translate }}</th>
+        <th>{{ 'admin.users.username' | translate }}</th>
+        <th>{{ 'admin.users.phone' | translate }}</th>
+        <th>{{ 'admin.users.roles' | translate }}</th>
+        <th>{{ 'admin.users.active' | translate }}</th>
+        <th>{{ 'admin.users.options' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of data | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.roles.join()}}</td>
+        <td>
+          <label style="margin-bottom: 0;" class="switch switch-pill switch-outline-success-alt">
+            <input type="checkbox" class="switch-input" (change)="changeUserStatus(user)" [checked]="user.active != false">
+            <span class="switch-slider"></span>
+          </label>
+        </td>
+        <td> 
+          <small className="text-muted"> <i (click)="openEditModal(user)" class="fa fa-edit fa-lg table-icon"></i></small>
+          <small className="text-muted"> <i (click)="removeUser(user)" class="fa fa-trash-o fa-lg table-icon"></i></small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-control">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<ngx-smart-modal #userEditModal identifier="userEditModal" customClass="nsm-dialog-animation-btt edit-user-modal">
+  <h3 class="admin-h">{{ 'admin.users.users_settings' | translate }}</h3>
+  <br>
+  <app-admin-edit [data]="userData" (finish)="finished($event)" ></app-admin-edit>
+</ngx-smart-modal>
+
+<app-decision-dialog [control]="modalControl"  (confirm)="confirm($event)"></app-decision-dialog>  

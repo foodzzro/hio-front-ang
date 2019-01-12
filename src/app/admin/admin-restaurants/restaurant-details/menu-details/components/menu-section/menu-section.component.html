@@ -1,0 +1,47 @@
+<div class="menu-container">
+  <div class="card">
+    <div class="card-header" (click)="isRestaurantCollapsed = !isRestaurantCollapsed">
+      {{ menu }}
+      <div class="card-header-actions">
+        <a disabled>
+          <small className="text-muted"> <i class="fa fa-plus fa-lg"></i></small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="!isRestaurantCollapsed">
+
+      <h5>Menu Section</h5> <br>
+
+      <div class="menu-section-wrap">
+
+        <div class="form-group ">
+          <label class="title" for="delivery_name">{{ 'admin.restaurant_menu.name' | translate }}</label>
+          <input type="text" class="form-control form-control-sm" id="delivery_name" placeholder="">
+        </div>
+
+        <div class="form-group ">
+          <label class="title" for="delivery_charge">{{ 'admin.restaurant_menu.description' | translate }}</label>
+          <input type="text" class="form-control form-control-sm" id="delivery_charge" placeholder="">
+        </div>
+
+        <div class="form-group" style="height: 36px">
+          <div class="menu-buttons">
+            <button aria-pressed="true" style="margin-right:15px;" class="btn-sm btn-block btn-outline-success active"
+              type="button">
+              <small className="text-muted"> <i class="fa fa-plus fa-lg"></i></small>
+              {{'admin.save' | translate}}
+            </button>
+            <button aria-pressed="true" (click)="clearShape()" style="margin:0" class="btn-sm btn-block btn-outline-danger active"
+              type="button">
+              <small className="text-muted"> <i class="fa fa-trash fa-lg"></i></small>
+              {{ 'admin.delete' | translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <app-menu-item></app-menu-item>      
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+.header-tabs {
+    border-bottom: 1px solid lightgray;
+    padding:5px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tabs-container {
+    list-style-type: none;
+    background: white;
+    margin:0;
+    height: 26px;
+}
+.tabs-container .tab {
+    display: inline;
+    padding:10px;
+    margin:0 3px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.tabs-container .tab.active {
+    border-bottom: 2px solid #4285F4;
+}
+
+.tabs-container .tab:hover {
+    border-bottom: 2px solid #4285F4;
+}
+
+.nsm-dialog.decision-modal.nsm-dialog-open {
+    top:30vh !important;
+    width:420px !important;
+}

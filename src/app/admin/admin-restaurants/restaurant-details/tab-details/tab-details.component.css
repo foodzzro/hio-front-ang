@@ -1,0 +1,23 @@
+.details-container {
+    display: flex;
+}
+
+.help-block {
+    font-size: 11px;
+}
+.small-label {
+    font-size:10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.hours {
+    margin: 0 5px;
+}
+.hours.separator::after {
+    content: '-';
+}
+.program-row {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    widtH:400px;
+}

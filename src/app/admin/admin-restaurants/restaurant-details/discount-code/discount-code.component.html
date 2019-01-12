@@ -1,0 +1,60 @@
+<table class="table discount-table">
+  <thead>
+    <tr>
+      <th>{{ 'admin.restaurant_discount.code' | translate }}</th>
+      <th>{{ 'admin.restaurant_discount.reduction_type' | translate }}</th>
+      <th>{{ 'admin.restaurant_discount.value' | translate }}</th>
+      <th>{{ 'admin.restaurant_discount.active' | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <input type="text" name="menu_price" class="form-control form-control-sm price" placeholder="{{ 'admin.restaurant_menu.price' | translate }}">
+      </td>
+      <td>
+        <div class="form-group row">
+
+          <div class="col-md-9 col-form-label">
+            <div class="form-check form-check-inline " style="margin-right: 20px;" id="inline-radios">
+              <input class="form-check-input" type="radio" name="inline-radios" id="flat" value="option1">
+              <label class="form-check-label" for="flat">{{ 'admin.restaurant_discount.flat' | translate }}</label>
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input class="form-check-input" type="radio" name="inline-radios" id="precentage" value="option2">
+              <label class="form-check-label" for="precentage">{{ 'admin.restaurant_discount.precentage' | translate }}</label>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <input type="text" name="menu_price" class="form-control form-control-sm price" placeholder="{{ 'admin.restaurant_discount.code' | translate }}">
+      </td>
+      <td>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="option1" id="checkbox1">
+          <label class="form-check-label" for="checkbox1">
+
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <span style="color:green; margin-left:15px;">NEW+</span>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <span class="help-block discount">
+    <b>Note:</b>
+    {{ 'admin.restaurant_discount.note' | translate }}
+  </span>
+</div>
+<br>
+<div class="form-group" style="width:100px;">
+  <div class="area-buttons">
+    <button aria-pressed="true" (click)="clearShape()" class="btn-sm btn-block btn-outline-success active"
+      type="button">{{ 'admin.save' | translate}}</button>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+.menu-options-container {
+    background: rgb(242, 251, 255);
+    border: 1px dashed lightgray;
+    border-top:2px solid rgb(114, 146,161);
+    margin-bottom: 23px;
+    width:100%;
+    display: block;
+    position: relative;
+}
+
+.option-header {
+    width:100%;
+    display: inline-block;
+}
+
+.option-head {
+    display:block;
+    padding:10px;
+}
+
+.option-head .head {
+    display:flex;
+    width:200px;
+    margin:0;
+}
+
+.menu-option {
+    width:50px;
+    margin:0 5px;
+}
+
+.extra-option {
+    display: flex;
+    width:98%;
+    position: relative;
+    border-top: 1px solid rgb(176, 204, 217);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding:10px;
+    margin:10px;
+}
+.extra-option .opt {
+  width:160px;
+  padding-bottom:4px;
+  display: flex;
+}
+
+.extra-option .opt .icon {
+    background: red;
+    border-radius:50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    margin-right: 5px;
+    color:white; 
+    margin-top:3px;
+}
