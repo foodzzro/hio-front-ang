@@ -1,6 +1,6 @@
 <div class="col-sm-12 details-container" [formGroup]="restaurantDetailsForm">
   <div class="col-sm-5">
-    <div class="form-group" form-error="name" [trigger]="restaurantDetailsForm.value.name" [form]="restaurantDetailsForm"> 
+    <div class="form-group" form-error="name" [form]="restaurantDetailsForm">
       <label class="title" for="name">{{ 'admin.restaurant.name' | translate }}</label>
       <input type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="">
     </div>
@@ -8,7 +8,7 @@
       <label class="title" for="description">{{ 'admin.restaurant.description' | translate }}</label>
       <textarea id="description" name="textarea-input" rows="3" class="form-control form-control-sm" placeholder=""></textarea>
     </div>
-    <div class="form-group" form-error="min_order" [trigger]="restaurantDetailsForm.value.min_order" [form]="restaurantDetailsForm">
+    <div class="form-group" form-error="min_order" [form]="restaurantDetailsForm">
       <label class="title" for="min_order_value">{{ 'admin.restaurant.min_order_val' | translate }}</label>
       <span class="help-block"><br>Minimum value of order before customer can order <br>.e.g. <b>10.30</b> or <b>12.50</b></span>
       <input type="text" formControlName="min_order" class="form-control form-control-sm" id="min_order_value" placeholder="">
@@ -18,24 +18,24 @@
       <span class="help-block"><br>Enter <b>numbers only</b> in the 3 fields below.</span>
     </div>
     <div class="form-group row" >
-      <div class="col-sm-4" form-error="delivery_med_time" [trigger]="restaurantDetailsForm.value.delivery_med_time" [form]="restaurantDetailsForm">
+      <div class="col-sm-4" form-error="delivery_med_time" [form]="restaurantDetailsForm">
         <label class="small-label" for="delivery_avg">{{ 'admin.restaurant.avg_time' | translate }}</label>
         <input type="text" formControlName="delivery_med_time" class="form-control form-control-sm" placeholder="">
       </div>
-      <div class="col-sm-4" form-error="delivery_std_tax" [trigger]="restaurantDetailsForm.value.delivery_std_tax" [form]="restaurantDetailsForm">
+      <div class="col-sm-4" form-error="delivery_std_tax" [form]="restaurantDetailsForm">
         <label class="small-label" for="delivery">{{ 'admin.restaurant.standard_fee' | translate }}</label>
         <input type="text" formControlName="delivery_std_tax" class="form-control form-control-sm" placeholder="">
       </div>
-      <div class="col-sm-4" form-error="delivery_free_ship" [trigger]="restaurantDetailsForm.value.delivery_free_ship" [form]="restaurantDetailsForm">
+      <div class="col-sm-4" form-error="delivery_free_ship" [form]="restaurantDetailsForm">
         <label class="small-label" for="delivery">{{ 'admin.restaurant.free_over' | translate }}</label>
         <input type="text" formControlName="delivery_free_ship" class="form-control form-control-sm" placeholder="">
       </div>
     </div>
-    <div class="form-group" form-error="email_alert" [trigger]="restaurantDetailsForm.value.email_alert" [form]="restaurantDetailsForm">
+    <div class="form-group" form-error="email_alert" [form]="restaurantDetailsForm">
       <label class="title" for="email_alert">{{ 'admin.restaurant.email_alerts' | translate }}</label>
       <span class="help-block"><br>Confirmarile vor fi trimise pe acest email</span>
       <input type="text" formControlName="email_alert" class="form-control form-control-sm" id="email_alert" placeholder="">
-    </div> 
+    </div>
     <div class="form-group">
       <label class="title" for="delivery_type">{{ 'admin.restaurant.delivery_type' | translate }}</label>
       <div class="">

@@ -1,11 +1,27 @@
 <div class="row">
+
+  <div class="col-sm-6 col-md-3">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="admin-h">{{ 'admin.restaurant.add_new' | translate }}</h4>
+      </div>
+      <div class="card-body" style="background: #ddd">
+        <div class="card-body-overlay">
+          <div class="add-card" (click)="goToDetails()">
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="col-sm-6 col-md-3" *ngFor="let item of data">
     <div class="card">
       <div class="card-header">
         <h4 class="admin-h">{{item.name}}</h4>
 
         <app-card-header-options [options]="cardOptions" (clickedOpt)="cardOptionClicked($event, item.id)"></app-card-header-options>
-  
+
       </div>
       <div class="card-body">
         <div class="card-body-overlay">
@@ -24,4 +40,4 @@
   </div>
 </div>
 
-<app-decision-dialog [control]="decisionModal"  (confirm)="decisionConfirm($event)"></app-decision-dialog>  
+<app-decision-dialog [control]="decisionModal" (confirm)="decisionConfirm($event)"></app-decision-dialog>

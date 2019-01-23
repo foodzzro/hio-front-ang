@@ -26,14 +26,31 @@ export class TabDetailsComponent implements OnInit {
       delivery_med_time: ['', Validators.required],
       delivery_std_tax: ['', Validators.compose([Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')])],
       delivery_free_ship: ['', Validators.compose([Validators.required, Validators.pattern('^(0|[1-9][0-9]*)$')])],
-      email_alert: ['', Validators.email] 
+      email_alert: ['', Validators.email]
     });
   }
 
   saveRestaurantDetails() {
     if(this.restaurantDetailsForm.valid) {
       console.log(this.restaurantDetailsForm)
+    } else {
+      //TO DO
+      this.triggerRequiredValidations()
     }
+  }
+
+  triggerRequiredValidations() {
+    const formGroup:any = this.restaurantDetailsForm;
+    for(let item of Object.keys(formGroup.controls)) {
+      if( this.isFormGroupRequired(formGroup, item) ) {
+        this.restaurantDetailsForm.controls[item].updateValueAndValidity({ onlySelf: true, emitEvent: true });
+      }
+    }
+    console.log(this.restaurantDetailsForm);
+  }
+
+  isFormGroupRequired(formGroup, item) {
+    return formGroup.controls[item].errors != null && formGroup.controls[item].errors.required;
   }
 
 }

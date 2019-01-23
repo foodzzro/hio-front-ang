@@ -20,10 +20,10 @@
             "contact_phone_number": "Telefon de contact",
             "just_restaurant_platform": "Doar pe platforma de hio.ro",
             "address": "Adresa",
-            "cuisine": "Bucatarie",  
+            "cuisine": "Bucatarie",
             "select_cuisine_type": "Selecteaza tipul de bucatarie",
             "address_details": {
-                "city": "Oras", 
+                "city": "Oras",
                 "county": "Judet",
                 "address1": "Adresa 1",
                 "address2": "Adresa 2"
@@ -41,7 +41,8 @@
                 "image": "Schimba imagine",
                 "edit": "Editeaza",
                 "trash": "Sterge"
-            }
+            },
+            "add_new": "Adauga restaurant"
         },
         "delivery_area": {
             "name": "Nume Zona",
@@ -82,7 +83,7 @@
             "email": "Email",
             "username": "Username",
             "roles": "Roluri",
-            "users": "Utilizatori", 
+            "users": "Utilizatori",
             "manager": "Manager",
             "city_manager": "Manager Oras",
             "admin": "Administrator",
@@ -111,7 +112,7 @@
         "sunday": "Duminica"
     },
     "form_validation": {
-        "required": "Campul este obligatoriu", 
+        "required": "Campul este obligatoriu",
         "number": "Valoarea trebuie sa fie numar",
         "pattern": "Valoare introdusa nu este valida",
         "email": "Valoarea introdusa nu este de tip email"

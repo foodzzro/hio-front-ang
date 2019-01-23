@@ -23,12 +23,12 @@ import {StickyModule} from 'ng2-sticky-kit';
 
 @NgModule({
     declarations: [
-        RestaurantListComponent, 
-        RestaurantDetailsComponent, 
-        TabDetailsComponent, 
-        DeliveryAreaComponent, 
-        MenuDetailsComponent, 
-        DiscountCodeComponent, 
+        RestaurantListComponent,
+        RestaurantDetailsComponent,
+        TabDetailsComponent,
+        DeliveryAreaComponent,
+        MenuDetailsComponent,
+        DiscountCodeComponent,
         ExtraOptionListComponent,
         ManagerComponent, MenuSectionComponent, MenuItemComponent, MenuOptionComponent, TemplateMenuComponent, RestaurantCardListComponent,
     ],
