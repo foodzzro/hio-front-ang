@@ -22,7 +22,6 @@ export class DecisionDialogComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if(changes && changes.control.currentValue.decisionMessage && !changes.control.currentValue.closeDecision) {
       this.message = changes.control.currentValue.decisionMessage;
       this.ngxSmartModalService.getModal("decisionModal").open();       
@@ -33,7 +32,10 @@ export class DecisionDialogComponent implements OnInit {
   }
 
   doConfirm(opt) {
-    this.confirm.emit(opt);
+    this.confirm.emit({
+      opt: opt,
+      data: this.control.data
+    });
   }
 
 }

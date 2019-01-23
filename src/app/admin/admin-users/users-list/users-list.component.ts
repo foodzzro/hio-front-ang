@@ -19,6 +19,7 @@ export class UsersListComponent extends FilterComponent implements OnInit {
     decisionMessage: "",
     closeDecision: false
   }
+  p:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -87,7 +88,7 @@ export class UsersListComponent extends FilterComponent implements OnInit {
 
   async confirm(val) {
 
-    if (val) {
+    if (val.opt) {
       let result = await this.adminUserService.deleteUser(this.userToRemove);
       if (result) {
         this.notify.success("admin.users.user_deleted");

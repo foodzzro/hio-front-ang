@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
     app:
-        image: 'ang-app:latest'
+        image: 'hio-app:latest'
         build: '.'
         ports:
-            - 3000:80
+            - 8080:8080

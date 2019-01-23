@@ -12,6 +12,7 @@ export class DeliveryAreaComponent implements OnInit {
   map: any;
   drawingManager: any;
   selectedShape: any;
+  isCollapsed:boolean;
 
   constructor() { }
 

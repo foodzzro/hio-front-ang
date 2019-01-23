@@ -34,7 +34,14 @@
             "payment_cash_on_delivery": "Plata la livrare",
             "opening_hours": "Program Restaurant",
             "opening_hours_tip": "Intervalul in care clientul poate initia o comanda. Formatul este de 24 ore. ex.",
-            "closed": "Inchis"
+            "closed": "Inchis",
+            "image_changed": "Imagine schimbata",
+            "delete_restaurant": "Doriti sa stergeti restaurantul?",
+            "card_options": {
+                "image": "Schimba imagine",
+                "edit": "Editeaza",
+                "trash": "Sterge"
+            }
         },
         "delivery_area": {
             "name": "Nume Zona",
@@ -64,6 +71,12 @@
             "login_email": "Email Logare",
             "note": " Allowing restaurant managers to edit this restaurant and/or menu will affect the current LIVE setup. Always exercise caution before granting these privelidges."
         },
+        "menu": {
+            "template": {
+                "template_name": "Nume sablon",
+                "products": "Produse"
+            }
+        },
         "users": {
             "id": "ID",
             "email": "Email",
@@ -85,7 +98,8 @@
         },
         "delete": "Sterge",
         "add": "Adauga",
-        "save": "Salveaza"
+        "save": "Salveaza",
+        "edit": "Editeaza"
     },
     "program": {
         "monday": "Luni",
@@ -96,12 +110,19 @@
         "saturday": "Sambata",
         "sunday": "Duminica"
     },
+    "form_validation": {
+        "required": "Campul este obligatoriu", 
+        "number": "Valoarea trebuie sa fie numar",
+        "pattern": "Valoare introdusa nu este valida",
+        "email": "Valoarea introdusa nu este de tip email"
+    },
     "app": {
         "yes": "Da",
         "no": "Nu",
         "enter-password": "Introduceti Parola",
         "email-not-valid": "Email invalid",
         "confirm-message": "Confirmare",
-        "do-you-want-delete": "Doriti sa stergeti elementele?"
+        "do-you-want-delete": "Doriti sa stergeti elementele?",
+        "are_you_sure": "Sunteti sigur?"
     }
 }

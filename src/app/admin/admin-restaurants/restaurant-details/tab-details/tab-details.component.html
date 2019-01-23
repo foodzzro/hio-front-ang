@@ -1,144 +1,152 @@
-<div class="col-sm-12 details-container">
-    <div class="col-sm-5">
-        <div class="form-group ">
-          <label class="title" for="name">{{ 'admin.restaurant.name' | translate }}</label>
-          <input type="text" class="form-control form-control-sm" id="name" placeholder="">
-        </div>
-        <div class="form-group">
-            <label class="title" for="description">{{ 'admin.restaurant.description' | translate }}</label>
-            <textarea id="description" name="textarea-input" rows="3" class="form-control form-control-sm" placeholder=""></textarea>
-        </div>
-        <div class="form-group">
-          <label class="title" for="min_order_value">{{ 'admin.restaurant.min_order_val' | translate }}</label>
-          <span class="help-block"><br>Minimum value of order before customer can order <br>.e.g. <b>10.30</b> or <b>12.50</b></span>
-          <input type="text" class="form-control form-control-sm" id="min_order_value" placeholder="">
-        </div>
-        <div class="form-group" style="margin-bottom: 3px;">
-            <label class="title" for="delivery">{{ 'admin.restaurant.delivery' | translate }}</label>
-            <span class="help-block"><br>Enter <b>numbers only</b> in the 3 fields below.</span>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-4">
-              <label class="small-label" for="delivery_avg">{{ 'admin.restaurant.avg_time' | translate }}</label>
-              <input type="text" class="form-control form-control-sm" placeholder="">
-            </div>
-            <div class="col-sm-4">
-              <label class="small-label" for="delivery">{{ 'admin.restaurant.standard_fee' | translate }}</label>
-              <input type="text" class="form-control form-control-sm" placeholder="">
-            </div>
-            <div class="col-sm-4">
-              <label class="small-label" for="delivery">{{ 'admin.restaurant.free_over' | translate }}</label>
-              <input type="text" class="form-control form-control-sm" placeholder="">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="title" for="email_alert">{{ 'admin.restaurant.email_alerts' | translate }}</label>
-            <span class="help-block"><br>Confirmarile vor fi trimise pe acest email</span>
-            <input type="text" class="form-control form-control-sm" id="email_alert" placeholder="">
-        </div>
-        <div class="form-group">
-          <label class="title" for="delivery_type">{{ 'admin.restaurant.delivery_type' | translate }}</label>
-          <div class="">
-            <select id="delivery_type" name="select3" class="form-control form-control-sm">
-              <option value="0">Selecteaza</option>
-              <option value="1">Doar Livrare</option>
-              <option value="3">Colectare</option>
-              <option value="2">Livrare si Colectare</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-sm-6">
-              <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="option1" id="checkbox1">
-                  <label class="form-check-label" for="checkbox1">
-                    Allow Express Delivery
-                  </label>
-              </div>
-          </div>
-          <div class="col-sm-6">
-             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="option1" id="show_in_search">
-                <label class="form-check-label"  for="show_in_search">
-                    {{ 'admin.restaurant.show_in_search' | translate }}
-                </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-            <label class="title" for="contact_phone">{{ 'admin.restaurant.contact_phone_number' | translate }}</label>
-            <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.just_restaurant_platform' | translate }}</span>
-            <input type="text" class="form-control form-control-sm col-sm-6" id="contact_phone" placeholder="">
-        </div>
-
+<div class="col-sm-12 details-container" [formGroup]="restaurantDetailsForm">
+  <div class="col-sm-5">
+    <div class="form-group" form-error="name" [trigger]="restaurantDetailsForm.value.name" [form]="restaurantDetailsForm"> 
+      <label class="title" for="name">{{ 'admin.restaurant.name' | translate }}</label>
+      <input type="text" formControlName="name" class="form-control form-control-sm" id="name" placeholder="">
+    </div>
+    <div class="form-group">
+      <label class="title" for="description">{{ 'admin.restaurant.description' | translate }}</label>
+      <textarea id="description" name="textarea-input" rows="3" class="form-control form-control-sm" placeholder=""></textarea>
+    </div>
+    <div class="form-group" form-error="min_order" [trigger]="restaurantDetailsForm.value.min_order" [form]="restaurantDetailsForm">
+      <label class="title" for="min_order_value">{{ 'admin.restaurant.min_order_val' | translate }}</label>
+      <span class="help-block"><br>Minimum value of order before customer can order <br>.e.g. <b>10.30</b> or <b>12.50</b></span>
+      <input type="text" formControlName="min_order" class="form-control form-control-sm" id="min_order_value" placeholder="">
+    </div>
+    <div class="form-group" style="margin-bottom: 3px;">
+      <label class="title" for="delivery">{{ 'admin.restaurant.delivery' | translate }}</label>
+      <span class="help-block"><br>Enter <b>numbers only</b> in the 3 fields below.</span>
+    </div>
+    <div class="form-group row" >
+      <div class="col-sm-4" form-error="delivery_med_time" [trigger]="restaurantDetailsForm.value.delivery_med_time" [form]="restaurantDetailsForm">
+        <label class="small-label" for="delivery_avg">{{ 'admin.restaurant.avg_time' | translate }}</label>
+        <input type="text" formControlName="delivery_med_time" class="form-control form-control-sm" placeholder="">
       </div>
-    
-      <div class="col-sm-5">
-        <div class="form-group ">
-          <label class="title" for="city">{{ 'admin.restaurant.address' | translate }}</label>
-          <input type="text" class="form-control form-control-sm" id="city" placeholder="{{ 'admin.restaurant.address_details.address1' | translate}}"> <br>
-          <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.city' | translate}}"> <br>
-          <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.county' | translate}}"> <br>
-        </div>
-        <div class="form-group">
-          <label class="title" for="cuisine">{{ 'admin.restaurant.cuisine' | translate }}</label>
-          <div class="">
-            <select id="cuisine" name="cuisineName" class="form-control form-control-sm">
-              <option value="0">Selecteaza</option>
-              <option value="1">Doar Livrare</option>
-              <option value="3">Colectare</option>
-              <option value="2">Livrare si Colectare</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="title" for="cuisine">{{ 'admin.restaurant.payment_types' | translate }}</label>
-          <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.select_payment_type' | translate }}</span>
-          <div class="form-group row" style="margin-top:10px;">
-            <br>
-            <div class="col-sm-6">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="option1" id="card">
-                    <label class="form-check-label" for="card">
-                      {{ 'admin.restaurant.payment_card' | translate}}
-                    </label>
-                </div>
-            </div>
-            <div class="col-sm-6">
-               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="option1" id="cash">
-                  <label class="form-check-label"  for="cash">
-                      {{ 'admin.restaurant.payment_cash_on_delivery' | translate}}
-                  </label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <br>
-            <label class="title" for="cuisine">{{ 'admin.restaurant.opening_hours' | translate }}</label>
-            <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.opening_hours_tip' | translate }} <br>  <b>07:00</b> or <b>23:30</b></span>
-        </div>
-        
-        <div class="form-group row program-row">
-          <div class="col-sm-2">
-              {{ 'program.monday' | translate}}
-          </div>
-          <div class="col-sm-6" style="display:flex">
-              <input type="text" class="form-control form-control-sm hours separator" id="name2" placeholder="00:00"> <br>
-              <span>-</span>
-              <input type="text" class="form-control form-control-sm hours" id="name2" placeholder="00:00"> <br>
-          </div>
-          <div class="col-sm-2">
-              <input class="form-check-input" type="checkbox" value="option1" id="closed">
-              <label class="form-check-label"  for="closed">
-                  {{ 'admin.restaurant.closed' | translate}}
-              </label>
-          </div>
-        </div>
-      
+      <div class="col-sm-4" form-error="delivery_std_tax" [trigger]="restaurantDetailsForm.value.delivery_std_tax" [form]="restaurantDetailsForm">
+        <label class="small-label" for="delivery">{{ 'admin.restaurant.standard_fee' | translate }}</label>
+        <input type="text" formControlName="delivery_std_tax" class="form-control form-control-sm" placeholder="">
       </div>
+      <div class="col-sm-4" form-error="delivery_free_ship" [trigger]="restaurantDetailsForm.value.delivery_free_ship" [form]="restaurantDetailsForm">
+        <label class="small-label" for="delivery">{{ 'admin.restaurant.free_over' | translate }}</label>
+        <input type="text" formControlName="delivery_free_ship" class="form-control form-control-sm" placeholder="">
+      </div>
+    </div>
+    <div class="form-group" form-error="email_alert" [trigger]="restaurantDetailsForm.value.email_alert" [form]="restaurantDetailsForm">
+      <label class="title" for="email_alert">{{ 'admin.restaurant.email_alerts' | translate }}</label>
+      <span class="help-block"><br>Confirmarile vor fi trimise pe acest email</span>
+      <input type="text" formControlName="email_alert" class="form-control form-control-sm" id="email_alert" placeholder="">
+    </div> 
+    <div class="form-group">
+      <label class="title" for="delivery_type">{{ 'admin.restaurant.delivery_type' | translate }}</label>
+      <div class="">
+        <select id="delivery_type" name="select3" class="form-control form-control-sm">
+          <option value="0">Selecteaza</option>
+          <option value="1">Doar Livrare</option>
+          <option value="3">Colectare</option>
+          <option value="2">Livrare si Colectare</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="option1" id="checkbox1">
+          <label class="form-check-label" for="checkbox1">
+            Allow Express Delivery
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="option1" id="show_in_search">
+          <label class="form-check-label" for="show_in_search">
+            {{ 'admin.restaurant.show_in_search' | translate }}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="title" for="contact_phone">{{ 'admin.restaurant.contact_phone_number' | translate }}</label>
+      <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.just_restaurant_platform' |
+        translate }}</span>
+      <input type="text" class="form-control form-control-sm col-sm-6" id="contact_phone" placeholder="">
+    </div>
+
+    <button aria-pressed="true" (click)="saveRestaurantDetails()" class="btn btn-sm btn-block btn-outline-success active col-sm-2"
+      style="float:right" type="button">{{ 'admin.save' | translate}}
+    </button>
+
+  </div>
+
+  <div class="col-sm-5">
+    <div class="form-group ">
+      <label class="title" for="city">{{ 'admin.restaurant.address' | translate }}</label>
+      <input type="text" class="form-control form-control-sm" id="city" placeholder="{{ 'admin.restaurant.address_details.address1' | translate}}">
+      <br>
+      <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.city' | translate}}">
+      <br>
+      <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.county' | translate}}">
+      <br>
+    </div>
+    <div class="form-group">
+      <label class="title" for="cuisine">{{ 'admin.restaurant.cuisine' | translate }}</label>
+      <div class="">
+        <select id="cuisine" name="cuisineName" class="form-control form-control-sm">
+          <option value="0">Selecteaza</option>
+          <option value="1">Doar Livrare</option>
+          <option value="3">Colectare</option>
+          <option value="2">Livrare si Colectare</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="title" for="cuisine">{{ 'admin.restaurant.payment_types' | translate }}</label>
+      <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.select_payment_type' | translate }}</span>
+      <div class="form-group row" style="margin-top:10px;">
+        <br>
+        <div class="col-sm-6">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="option1" id="card">
+            <label class="form-check-label" for="card">
+              {{ 'admin.restaurant.payment_card' | translate}}
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="option1" id="cash">
+            <label class="form-check-label" for="cash">
+              {{ 'admin.restaurant.payment_cash_on_delivery' | translate}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <br>
+      <label class="title" for="cuisine">{{ 'admin.restaurant.opening_hours' | translate }}</label>
+      <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.opening_hours_tip' | translate }}
+        <br> <b>07:00</b> or <b>23:30</b></span>
+    </div>
+
+    <div class="form-group row program-row">
+      <div class="col-sm-2">
+        {{ 'program.monday' | translate}}
+      </div>
+      <div class="col-sm-6" style="display:flex">
+        <input type="text" class="form-control form-control-sm hours separator" id="name2" placeholder="00:00"> <br>
+        <span>-</span>
+        <input type="text" class="form-control form-control-sm hours" id="name2" placeholder="00:00"> <br>
+      </div>
+      <div class="col-sm-2">
+        <input class="form-check-input" type="checkbox" value="option1" id="closed">
+        <label class="form-check-label" for="closed">
+          {{ 'admin.restaurant.closed' | translate}}
+        </label>
+      </div>
+    </div>
+  </div>
 </div>

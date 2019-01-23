@@ -14,7 +14,6 @@ export class UserEditHelper {
 
         userForm.get("userPassword").clearValidators();
         userForm.controls.userEmail.setValue(data.email);
-        userForm.controls.uniqueUsername.setValue(data.email);
         userForm.controls.userPassword.setValue('');
         userForm.controls.userPhone.setValue(data.phone);
         userForm.controls.userFirstName.setValue(data.firstName)
@@ -27,7 +26,6 @@ export class UserEditHelper {
     convertFormData(data, userForm) {
         return  {
           id: data.id,
-          username: userForm.value.userEmail,
           email: userForm.value.userEmail,
           firstName: userForm.value.userFirstName,
           lastName: userForm.value.userLastName,

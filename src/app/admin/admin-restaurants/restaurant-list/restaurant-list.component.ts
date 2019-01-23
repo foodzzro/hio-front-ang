@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -8,11 +8,17 @@ import { Router } from '@angular/router';
 })
 export class RestaurantListComponent implements OnInit {
 
+  restaurants:any = [ "rest 1", "rest 2", "rest 3", "rest 4"]
+
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.data.subscribe( data => {
+      this.restaurants = data.restaurantList;
+    })
   }
 
   isCollapsed: boolean = false;
@@ -31,7 +37,7 @@ export class RestaurantListComponent implements OnInit {
     this.iconCollapse = this.isCollapsed ? 'icon-arrow-down' : 'icon-arrow-up';
   }
 
-  goToDetails() {
-    this.router.navigateByUrl("app/admin/restaurant/details");
+  goToDetails(evt) {
+    if(evt.go) this.router.navigateByUrl("app/admin/restaurant/details");
   }
 }

@@ -1,10 +1,15 @@
-<div class="menu-wrapper">
+<div class="menu-wrapper" #boundary>
 
     <div cdkDropList class="menu-list" (cdkDropListDropped)="drop($event)">
         <app-menu-section *ngFor="let menu of menuItems" [menu]="menu" class="menu-box" cdkDrag></app-menu-section>
     </div>
 
-    <div class="right-section">
-       <app-template-menu></app-template-menu>
+    <div style="width: calc(70vw - 550px); margin-left:15px;">
+        <div #spacer></div>
+        <div class="right-section" sticky sticky-offset-top="70">
+            <app-template-menu class="template-row"></app-template-menu>
+            <app-template-menu class="template-row"></app-template-menu>
+            <app-template-menu class="template-row"></app-template-menu>
+        </div>
     </div>
 </div>

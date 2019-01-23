@@ -6,10 +6,18 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { DecisionDialogComponent } from "./modals/decision-dialog/decision-dialog.component";
+import {MatListModule} from '@angular/material/list';
+import { BackgroundImageDirective } from "../directives/background-image.directive";
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { CardHeaderOptionsComponent } from "./components/card-header-options.component";
+import { FormErrorMessageDirective } from "./directives/form-error-message.directive";
 
 @NgModule({
     declarations: [
-        DecisionDialogComponent
+        DecisionDialogComponent,
+        BackgroundImageDirective,
+        CardHeaderOptionsComponent,
+        FormErrorMessageDirective
     ],
     imports: [
         CommonModule,
@@ -17,7 +25,10 @@ import { DecisionDialogComponent } from "./modals/decision-dialog/decision-dialo
         CollapseModule.forRoot(),
         TabsModule.forRoot(),
         NgxSmartModalModule.forRoot(),
-        FormsModule, ReactiveFormsModule
+        FormsModule, ReactiveFormsModule,
+        
+        MatListModule,
+        MatTooltipModule
     ],
     exports: [
         CommonModule,
@@ -26,9 +37,15 @@ import { DecisionDialogComponent } from "./modals/decision-dialog/decision-dialo
         TabsModule,  
         NgxSmartModalModule,
         FormsModule, ReactiveFormsModule,
-        DecisionDialogComponent
-    ]
 
+        MatListModule,
+        MatTooltipModule,
+
+        DecisionDialogComponent,
+        BackgroundImageDirective,
+        CardHeaderOptionsComponent,
+        FormErrorMessageDirective
+    ]
 })
-export class SharedModulesModule {}
+export class AdminSharedModulesModule {}
  

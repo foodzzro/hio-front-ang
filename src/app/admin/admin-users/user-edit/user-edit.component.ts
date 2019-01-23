@@ -33,7 +33,6 @@ export class UserEditComponent implements OnInit {
       userPassword: ['', Validators.required],
       userPhone: ['', Validators.required],
       userLastName: ['', Validators.required],
-      uniqueUsername: ['', Validators.required],
       active: ['', Validators.required]
     })
   }
@@ -80,7 +79,9 @@ export class UserEditComponent implements OnInit {
     this.finish.emit({ status: true, data: returnData});
   }
 
-  registerOnChange() {}
+  registerOnChange() {
+
+  }
 
 }
   

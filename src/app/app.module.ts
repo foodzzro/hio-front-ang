@@ -12,8 +12,9 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { AdminGuard } from './app-commons/guards/admin.guard';
-import { SharedModulesModule } from './app-commons/admin/shared-module.module';
 import { SharedProvidersModule } from './app-commons/admin/shared-providers.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AdminSharedModulesModule } from './app-commons/admin/admin-shared-module.module';
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,13 +28,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    SharedModulesModule,
+    AdminSharedModulesModule,
 
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-
-    AdminModule,
+    NgxSpinnerModule,
 
     SharedProvidersModule.forRoot(),
     ToastrModule.forRoot(),
@@ -45,6 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+
+    AdminModule,
   ],
   providers: [AdminGuard],
   bootstrap: [AppComponent]

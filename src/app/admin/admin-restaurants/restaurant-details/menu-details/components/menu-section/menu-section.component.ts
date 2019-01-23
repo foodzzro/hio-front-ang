@@ -10,7 +10,7 @@ export class MenuSectionComponent extends BaseMenuComponent implements OnInit {
 
   @Input()
   menu:any; 
-
+  isRestaurantCollapsed:boolean;
 
   constructor() { 
     super();

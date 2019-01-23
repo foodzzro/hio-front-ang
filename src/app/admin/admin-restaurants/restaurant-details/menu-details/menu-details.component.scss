@@ -23,9 +23,5 @@
 
 .menu-wrapper {
   display: flex;
-}
-
-.right-section {
-  margin-left:20px;
-  //background: #fafafa;
+  align-content: stretch;
 }

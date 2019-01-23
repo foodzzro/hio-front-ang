@@ -8,6 +8,8 @@ import { BaseMenuComponent } from '../../base-menu.component';
 })
 export class MenuItemComponent extends BaseMenuComponent implements OnInit {
 
+  isMenuColapse:boolean;
+
   constructor() { 
     super();
   }

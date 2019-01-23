@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateMenuComponent implements OnInit {
 
+  panelOpenState:boolean;
+
   constructor() { }
 
   ngOnInit() {

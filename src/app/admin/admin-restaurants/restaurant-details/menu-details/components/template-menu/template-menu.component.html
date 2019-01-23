@@ -1,15 +1,33 @@
+<div class="menu-templates">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Self aware panel
+                </mat-panel-title>
+                <mat-panel-description>
+                    <label style="margin-bottom: 0;" class="switch switch-pill switch-outline-success-alt">
+                        <input type="checkbox" class="switch-input" [checked]="true">
+                        <span class="switch-slider"></span>
+                    </label>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
 
 
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Self aware panel
-            </mat-panel-title>
-            <mat-panel-description>
-                Currently I am {{panelOpenState ? 'open' : 'closed'}}
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-    </mat-expansion-panel>
-</mat-accordion>
+            <div class="form-group row">
+                <div class="col-9">
+                    <input type="text" class="form-control form-control-sm" style="margin-left:10px" placeholder="{{ 'admin.menu.template.template_name' | translate }}">
+                </div>
+                <button aria-pressed="true" class="form-group-row btn btn-sm btn-outline-light active col-2"
+                    type="button">
+                    <small className="text-muted"> <i class="fa fa-edit fa-lg"></i></small>
+                    {{ 'admin.edit' | translate}}
+                </button>
+            </div>
+            
+            <app-extra-option-list></app-extra-option-list>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</div>

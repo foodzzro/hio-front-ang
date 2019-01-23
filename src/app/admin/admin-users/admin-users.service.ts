@@ -25,7 +25,6 @@ export class AdminUsersService {
         let body = new FormData();
         body.append("email", user.userEmail);
         body.append("password", user.userPassword);
-        body.append("username", user.uniqueUsername);
         body.append("firstName", user.userFirstName);
         body.append("lastName", user.userLastName);
         body.append("phone", user.userPhone);
@@ -40,7 +39,6 @@ export class AdminUsersService {
         let body = new FormData();
         body.append("email", user.userEmail);
         body.append("password", user.userPassword);
-        body.append("username", user.uniqueUsername);
         body.append("firstName", user.userFirstName);
         body.append("lastName", user.userLastName);
         body.append("phone", user.userPhone);

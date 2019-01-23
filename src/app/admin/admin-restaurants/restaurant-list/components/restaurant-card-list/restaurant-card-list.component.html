@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-sm-6 col-md-3" *ngFor="let item of data">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="admin-h">{{item.name}}</h4>
+
+        <app-card-header-options [options]="cardOptions" (clickedOpt)="cardOptionClicked($event, item.id)"></app-card-header-options>
+  
+      </div>
+      <div class="card-body">
+        <div class="card-body-overlay">
+          <div *ngIf="item.image_src; else no_image" (click)="goToDetails()">
+            <div background-image="{{ getBackground(item.id)}}" class="card-image"></div>
+          </div>
+
+          <ng-template #no_image>
+            <div class="card-image" (click)="goToDetails()"></div>
+          </ng-template>
+        </div>
+
+        <input style="display: none" accept="image/*" type="file" (change)="onFileChanged($event)" #fileInput>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-decision-dialog [control]="decisionModal"  (confirm)="decisionConfirm($event)"></app-decision-dialog>  
