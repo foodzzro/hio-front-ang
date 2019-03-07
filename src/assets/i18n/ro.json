@@ -1,6 +1,7 @@
 {
     "admin": {
         "restaurant": {
+            "active": "Restaurant Activ",
             "restaurant_details": "Detalii Restaurant",
             "delivery_areas": "Zone de Livrare",
             "menu": "Meniu",
@@ -42,7 +43,12 @@
                 "edit": "Editeaza",
                 "trash": "Sterge"
             },
-            "add_new": "Adauga restaurant"
+            "add_new": "Adauga restaurant",
+            "delivery_type_list": {
+                "pickup": "Colectare",
+                "delivery": "Doar Livrare",
+                "pickup_delivery": "Livrare si Colectare"
+            }
         },
         "delivery_area": {
             "name": "Nume Zona",
@@ -76,7 +82,10 @@
             "template": {
                 "template_name": "Nume sablon",
                 "products": "Produse"
-            }
+            },
+            "add_new": "Adauga meniu nou",
+            "success_save": "Meniu salvat",
+            "success_delete": "Meniu sters"
         },
         "users": {
             "id": "ID",

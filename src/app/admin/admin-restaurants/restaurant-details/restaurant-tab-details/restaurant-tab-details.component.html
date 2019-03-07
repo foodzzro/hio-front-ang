@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
       <label class="title" for="description">{{ 'admin.restaurant.description' | translate }}</label>
-      <textarea id="description" name="textarea-input" rows="3" class="form-control form-control-sm" placeholder=""></textarea>
+      <textarea id="description" name="textarea-input" formControlName="description" rows="3" class="form-control form-control-sm" placeholder=""></textarea>
     </div>
     <div class="form-group" form-error="min_order" [form]="restaurantDetailsForm">
       <label class="title" for="min_order_value">{{ 'admin.restaurant.min_order_val' | translate }}</label>
@@ -17,33 +17,30 @@
       <label class="title" for="delivery">{{ 'admin.restaurant.delivery' | translate }}</label>
       <span class="help-block"><br>Enter <b>numbers only</b> in the 3 fields below.</span>
     </div>
-    <div class="form-group row" >
-      <div class="col-sm-4" form-error="delivery_med_time" [form]="restaurantDetailsForm">
+    <div class="form-group row" [formGroup]="getDeliveryTypeFormGroup()">
+      <div class="col-sm-4" form-error="mediumTime" [form]="getDeliveryTypeFormGroup()">
         <label class="small-label" for="delivery_avg">{{ 'admin.restaurant.avg_time' | translate }}</label>
-        <input type="text" formControlName="delivery_med_time" class="form-control form-control-sm" placeholder="">
+        <input type="text" formControlName="mediumTime" class="form-control form-control-sm" placeholder="">
       </div>
-      <div class="col-sm-4" form-error="delivery_std_tax" [form]="restaurantDetailsForm">
+      <div class="col-sm-4" form-error="standardTax" [form]="getDeliveryTypeFormGroup()">
         <label class="small-label" for="delivery">{{ 'admin.restaurant.standard_fee' | translate }}</label>
-        <input type="text" formControlName="delivery_std_tax" class="form-control form-control-sm" placeholder="">
+        <input type="text" formControlName="standardTax" class="form-control form-control-sm" placeholder="">
       </div>
-      <div class="col-sm-4" form-error="delivery_free_ship" [form]="restaurantDetailsForm">
+      <div class="col-sm-4" form-error="freeDelivery" [form]="getDeliveryTypeFormGroup()">
         <label class="small-label" for="delivery">{{ 'admin.restaurant.free_over' | translate }}</label>
-        <input type="text" formControlName="delivery_free_ship" class="form-control form-control-sm" placeholder="">
+        <input type="text" formControlName="freeDelivery" class="form-control form-control-sm" placeholder="">
       </div>
-    </div>
-    <div class="form-group" form-error="email_alert" [form]="restaurantDetailsForm">
+    </div> 
+    <div class="form-group" form-error="emailAddressAlert" [form]="restaurantDetailsForm">
       <label class="title" for="email_alert">{{ 'admin.restaurant.email_alerts' | translate }}</label>
       <span class="help-block"><br>Confirmarile vor fi trimise pe acest email</span>
-      <input type="text" formControlName="email_alert" class="form-control form-control-sm" id="email_alert" placeholder="">
+      <input type="text" formControlName="emailAddressAlert" class="form-control form-control-sm" id="email_alert" placeholder="">
     </div>
-    <div class="form-group">
-      <label class="title" for="delivery_type">{{ 'admin.restaurant.delivery_type' | translate }}</label>
+    <div class="form-group"  form-error="name" [form]="getDeliveryTypeFormGroup()" [formGroup]="getDeliveryTypeFormGroup()">
+      <label class="title" for="deliveryType">{{ 'admin.restaurant.delivery_type' | translate }}</label>
       <div class="">
-        <select id="delivery_type" name="select3" class="form-control form-control-sm">
-          <option value="0">Selecteaza</option>
-          <option value="1">Doar Livrare</option>
-          <option value="3">Colectare</option>
-          <option value="2">Livrare si Colectare</option>
+        <select id="delivery_type" name="select3" class="form-control form-control-sm" formControlName="name" placeholder="Selecteaza tip livrare">
+          <option *ngFor="let type of deliveryTypes" [value]="type">{{ getDeliveryTypeName(type) | translate }}</option>
         </select>
       </div>
     </div>
@@ -56,22 +53,22 @@
             Allow Express Delivery
           </label>
         </div>
-      </div>
+      </div> 
       <div class="col-sm-6">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="option1" id="show_in_search">
+          <input class="form-check-input" type="checkbox" [checked]="isRestaurantActive()" (change)="onChangeActiveStatus($event)" id="show_in_search">
           <label class="form-check-label" for="show_in_search">
-            {{ 'admin.restaurant.show_in_search' | translate }}
+            {{ 'admin.restaurant.active' | translate }}
           </label>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" form-error="contactPhone" [form]="restaurantDetailsForm">
       <label class="title" for="contact_phone">{{ 'admin.restaurant.contact_phone_number' | translate }}</label>
       <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.just_restaurant_platform' |
         translate }}</span>
-      <input type="text" class="form-control form-control-sm col-sm-6" id="contact_phone" placeholder="">
+      <input type="text" class="form-control form-control-sm col-sm-6" id="contact_phone" formControlName="contactPhone">
     </div>
 
     <button aria-pressed="true" (click)="saveRestaurantDetails()" class="btn btn-sm btn-block btn-outline-success active col-sm-2"
@@ -83,32 +80,30 @@
   <div class="col-sm-5">
     <div class="form-group ">
       <label class="title" for="city">{{ 'admin.restaurant.address' | translate }}</label>
-      <input type="text" class="form-control form-control-sm" id="city" placeholder="{{ 'admin.restaurant.address_details.address1' | translate}}">
+      <input type="text" class="form-control form-control-sm" formControlName="address" id="address" placeholder="{{ 'admin.restaurant.address_details.address1' | translate}}">
       <br>
-      <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.city' | translate}}">
+      <input type="text" class="form-control form-control-sm" formControlName="city" id="city" placeholder="{{ 'admin.restaurant.address_details.city' | translate}}">
       <br>
-      <input type="text" class="form-control form-control-sm" id="name2" placeholder="{{ 'admin.restaurant.address_details.county' | translate}}">
+      <input type="text" class="form-control form-control-sm" formControlName="county" id="county" placeholder="{{ 'admin.restaurant.address_details.county' | translate}}">
       <br>
     </div>
-    <div class="form-group">
+    <div class="form-group" form-error="name" [form]="getCuisineTypeFormGroup()" [formGroup]="getCuisineTypeFormGroup()">
       <label class="title" for="cuisine">{{ 'admin.restaurant.cuisine' | translate }}</label>
       <div class="">
-        <select id="cuisine" name="cuisineName" class="form-control form-control-sm">
-          <option value="0">Selecteaza</option>
-          <option value="1">Doar Livrare</option>
-          <option value="3">Colectare</option>
-          <option value="2">Livrare si Colectare</option>
+        <select id="cuisine" name="cuisineName" class="form-control form-control-sm" formControlName="name">
+          <option *ngFor="let cuisine of cuisines" [value]="cuisine.name">{{ cuisine.name }}</option>
         </select>
       </div>
     </div>
     <div class="form-group">
       <label class="title" for="cuisine">{{ 'admin.restaurant.payment_types' | translate }}</label>
       <span class="help-block" style="margin-bottom: 3px;"><br>{{ 'admin.restaurant.select_payment_type' | translate }}</span>
+      
       <div class="form-group row" style="margin-top:10px;">
         <br>
         <div class="col-sm-6">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="option1" id="card">
+            <input class="form-check-input" type="checkbox" [checked]="isPaymentExists('CARD')" (change)="onChangePaymentCard($event)" [value]="paymentTypes[0]" id="card">
             <label class="form-check-label" for="card">
               {{ 'admin.restaurant.payment_card' | translate}}
             </label>
@@ -116,12 +111,13 @@
         </div>
         <div class="col-sm-6">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="option1" id="cash">
+            <input class="form-check-input" type="checkbox" [checked]="isPaymentExists('CASH_ON_DELIVERY')" (change)="onChangePaymentCash($event)" [value]="paymentTypes[1]" id="cash">
             <label class="form-check-label" for="cash">
               {{ 'admin.restaurant.payment_cash_on_delivery' | translate}}
             </label>
           </div>
         </div>
+        <span style="margin-left:10px;" class="form-error-message" *ngIf="isValidPaymentType()">{{ 'form_validation.required' | translate }}</span>
       </div>
     </div>
 

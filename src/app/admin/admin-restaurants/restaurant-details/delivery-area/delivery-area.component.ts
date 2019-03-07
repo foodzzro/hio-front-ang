@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { MapLoaderService } from 'src/app/app-commons/map-loader.service';
+import { RestaurantDetailsService } from '../services/restaurant-details.service';
+import { RestaurantDeliveryZoneModel } from '../../models/DeliveryZoneModel';
+import { ActivatedRoute } from '@angular/router';
 declare var google: any;
 
 @Component({
@@ -7,22 +10,61 @@ declare var google: any;
   templateUrl: './delivery-area.component.html',
   styleUrls: ['./delivery-area.component.css']
 })
-export class DeliveryAreaComponent implements OnInit {
+export class DeliveryAreaComponent implements OnInit, OnChanges {
+
+  @Input()
+  selected: string;
+
+  deliveryZones: RestaurantDeliveryZoneModel[] = [];
+  selectedDeliveryZone: RestaurantDeliveryZoneModel;
+  restaurantId: any;
+  coordinates: any;
+  editMode: boolean = false;
+  collapsed: boolean = false;
+  collapse: any[] = [];
 
   map: any;
   drawingManager: any;
   selectedShape: any;
-  isCollapsed:boolean;
+  drawedShape: any;
 
-  constructor() { }
+  constructor(
+    private restaurantService: RestaurantDetailsService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.restaurantId = this.route.snapshot.params.id;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    if (this.isSelectedChange(changes)) {
+      this.restaurantService.getDeliveryZones(this.restaurantId).then( (result: RestaurantDeliveryZoneModel[]) => {
+        this.deliveryZones = result;
+        this.initCollapse();
+      })
+    }
+  }
+
+  isSelectedChange(changes: SimpleChanges) {
+      return changes.selected.currentValue == "area" && changes.selected.previousValue !== changes.selected.currentValue;
   }
 
   ngAfterViewInit() {
     MapLoaderService.load().then(() => {
       this.drawPolygon();
+    });
+  }
+
+  initCollapse() {
+    this.collapse = this.deliveryZones.map( (element: RestaurantDeliveryZoneModel) => {
+      return true;
     })
+  }
+
+  selectDeliveryZone(zone: RestaurantDeliveryZoneModel) {
+    this.selectedDeliveryZone = zone;
   }
 
   drawPolygon() {
@@ -50,49 +92,36 @@ export class DeliveryAreaComponent implements OnInit {
       }
     });
 
-    var redCoords = [
-      {lat: 45.774, lng: 23.190},
-      {lat: 46.466, lng: 22.118},
-      {lat: 48.321, lng: 21.757}
-    ];
-
-    this.selectedShape = new google.maps.Polygon({
-      map: this.map,
-      paths: redCoords,
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      draggable: true,
-      editable:true,
-      geodesic: true
-    });
-
     this.drawingManager.setMap(this.map);
     var that = this;
-    google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event) => {
+
+    google.maps.event.addListener(this.drawingManager, 'overlaycomplete', (event: any) => {
       if (event.type === google.maps.drawing.OverlayType.POLYGON) {
-        //this is the coordinate, you can assign it to a variable or pass into another function.
-        alert(event.overlay.getPath().getArray());
+  
+        let result = [];
+        event.overlay.getPath().getArray().map( (value) => {
+          let obj = {
+            lat: value.lat(),
+            lng: value.lng()
+          };
+          result.push(obj);
+        });
+        this.setCoordinates(result);
       }
 
-         
+      this.addPolygonEditEvents(event.overlay);
+
       if (event.type != google.maps.drawing.OverlayType.MARKER) {
-        // Switch back to non-drawing mode after drawing a shape.
         that.drawingManager.setDrawingMode(null);
-  
-        // Add an event listener that selects the newly-drawn shape when the user
-        // mouses down on it.
         var newShape = event.overlay;
         newShape.type = event.type;
-        google.maps.event.addListener(newShape, 'click', function() {
+        google.maps.event.addListener(newShape, 'click', function(polygonEvent: any) {
+
           that.selectedShape = newShape;
           newShape.setEditable(true);
         });
         this.selectedShape = newShape;
       }
-
     });
   }
 
@@ -102,13 +131,90 @@ export class DeliveryAreaComponent implements OnInit {
       this.drawingManager.setMap(this.map);
     }
   }
-
-  collapsed(event: any): void {
-    // console.log(event);
+  setCoordinates(coords) {
+    this.coordinates = coords;
+    if (this.selectedDeliveryZone) {
+      this.deliveryZones = this.deliveryZones.map( val => {
+        if (val.id === this.selectedDeliveryZone.id) {
+          val.coordinates = JSON.stringify(coords);
+        }
+        return val;
+      });
+    }
   }
 
-  expanded(event: any): void {
-    // console.log(event);
+  setEditMode() {
+    this.editMode = true;
   }
 
+  setAddMode() {
+    this.editMode = true;
+  }
+
+  onChangeZone(event: RestaurantDeliveryZoneModel) {
+
+    if (!event) { 
+      this.clearShape();
+      return;
+    }
+
+    this.clearShape();
+    this.setEditMode();
+    this.collapseDeliveryZone(event.id)
+    this.collapsed = !this.collapsed;
+    
+    this.selectedDeliveryZone = event;
+    this.selectedShape = new google.maps.Polygon({
+      map: this.map,
+      paths: JSON.parse(event.coordinates),
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      draggable: true,
+      editable:true,
+      geodesic: true
+    });
+    this.drawingManager.setMap(this.map);
+    this.addPolygonEditEvents(this.selectedShape);
+  }
+
+  addZone() {
+   this.clearShape();
+   this.setEditMode(); 
+   this.collapseDeliveryZone(null);
+  }
+
+  collapseDeliveryZone(exclude: string) {
+    let currentIndex = this.deliveryZones.findIndex( el => el.id === exclude);
+    this.collapse = new Array(this.deliveryZones.length).fill(true);
+    this.collapse[currentIndex] = false;
+  }
+
+  addPolygonEditEvents(polygon: any) {
+    polygon.getPaths().forEach( (path, index) => {
+      google.maps.event.addListener(path, 'set_at',  (event:any) => {
+
+        let result = [];
+        polygon.getPath().getArray().map( (value) => {
+          let obj = {
+            lat: value.lat(),
+            lng: value.lng()
+          };
+          result.push(obj);
+        });
+        this.setCoordinates(result);
+      });
+    });
+  }
+
+  onAddComplete(deliveryZone: RestaurantDeliveryZoneModel) {
+    this.deliveryZones.push(deliveryZone);
+    this.collapsed = !this.collapsed;
+  }
+
+  onRemoveZone(id: any) {
+    this.deliveryZones = this.deliveryZones.filter( (element: any) => element.id !== id);
+  }
 }

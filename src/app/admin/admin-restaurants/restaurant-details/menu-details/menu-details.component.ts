@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MenuService } from './services/menu.service';
+import { ActivatedRoute } from '@angular/router';
+import { MenuCategoryModel } from './models/menu-category.model';
 
 @Component({
   selector: 'app-menu-details',
@@ -11,25 +14,32 @@ export class MenuDetailsComponent implements OnInit {
   isMenuColapse:Boolean = false;
   isRestaurantColapse:Boolean = false;
 
-  menuItems = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
-  ];
+  menuItems: any = [];
 
-  constructor() { }
+  constructor(
+    private menuService: MenuService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.getMenuItems();
   } 
 
+  async getMenuItems() {
+    const restaurantId = this.route.snapshot.params.id;
+    this.menuItems = await this.menuService.getMenuCategoryItesm(restaurantId);
+  }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.menuItems, event.previousIndex, event.currentIndex);
+  }
+
+  onSaveMenuCategory(menuCategory: MenuCategoryModel) {
+    this.menuItems.unshift(menuCategory);
+  }
+
+  onRemoveMenu(id: string) {
+    this.menuItems = this.menuItems.filter( (el: MenuCategoryModel) => el.id !== id);
   }
 
 }

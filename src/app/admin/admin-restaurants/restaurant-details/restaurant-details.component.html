@@ -6,19 +6,19 @@
       <h3 class="admin-h">Restaurant Name</h3>
 
       <tabset>
-        <tab heading=" {{ 'admin.restaurant.restaurant_details' | translate }}">
-          <app-tab-details></app-tab-details>
+        <tab heading=" {{ 'admin.restaurant.restaurant_details' | translate }}" (select)="changeTab('details')">
+          <app-restaurant-tab-details [restaurant]="restaurant"></app-restaurant-tab-details>
         </tab>
-        <tab heading="{{ 'admin.restaurant.delivery_areas' | translate }}">
-          <app-delivery-area></app-delivery-area>
+        <tab heading="{{ 'admin.restaurant.delivery_areas' | translate }}" (select)="changeTab('area')">
+          <app-delivery-area [selected]="selectedTab"></app-delivery-area>
         </tab>
-        <tab heading="{{ 'admin.restaurant.menu' | translate }}">
+        <tab heading="{{ 'admin.restaurant.menu' | translate }}" (select)="changeTab('menu')" >
           <app-menu-details></app-menu-details>
         </tab>
-        <tab heading="{{ 'admin.restaurant.discount_codes' | translate }}">
+        <tab heading="{{ 'admin.restaurant.discount_codes' | translate }}" (select)="changeTab('discount')">
           <app-discount-code></app-discount-code>
         </tab>
-        <tab heading="{{ 'admin.restaurant.manager' | translate }}">
+        <tab heading="{{ 'admin.restaurant.manager' | translate }}" (select)="changeTab('manager')">
           <app-manager></app-manager>
         </tab>
       </tabset>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseMenuComponent } from '../../base-menu.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu-item',
@@ -10,8 +11,10 @@ export class MenuItemComponent extends BaseMenuComponent implements OnInit {
 
   isMenuColapse:boolean;
 
-  constructor() { 
-    super();
+  constructor(
+    protected route: ActivatedRoute
+  ) { 
+    super(route);
   }
 
   ngOnInit() {

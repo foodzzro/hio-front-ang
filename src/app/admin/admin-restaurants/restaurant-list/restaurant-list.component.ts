@@ -37,7 +37,11 @@ export class RestaurantListComponent implements OnInit {
     this.iconCollapse = this.isCollapsed ? 'icon-arrow-down' : 'icon-arrow-up';
   }
 
-  goToDetails(evt) {
-    if(evt.go) this.router.navigateByUrl("app/admin/restaurant/details");
+  goToDetails(evt: any) {
+    if(evt.go && evt.id) {
+      this.router.navigateByUrl(`app/admin/restaurant/details/${evt.id}`);
+    } else {
+      this.router.navigateByUrl(`app/admin/restaurant/details`);
+    }
   }
 }

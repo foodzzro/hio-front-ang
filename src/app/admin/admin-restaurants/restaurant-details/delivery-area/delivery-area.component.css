@@ -11,9 +11,11 @@
     margin-left:30px;
 }
 
-.area-management .card-body.collapse.in.show, .area-management .card-header {
+.card-body.collapse.in.show, .card-header {
     width:410px !important;
+    cursor: pointer;
 }
+
 .area-buttons {
     display: block;
 }

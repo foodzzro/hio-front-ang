@@ -1,7 +1,12 @@
 <div class="menu-wrapper" #boundary>
 
     <div cdkDropList class="menu-list" (cdkDropListDropped)="drop($event)">
-        <app-menu-section *ngFor="let menu of menuItems" [menu]="menu" class="menu-box" cdkDrag></app-menu-section>
+        <app-menu-category *ngFor="let menu of menuItems" 
+            class="menu-box" 
+            [menuCategory]="menu" 
+            (remove)="onRemoveMenu($event)"
+            cdkDrag></app-menu-category>
+        <add-menu-category (save)="onSaveMenuCategory($event)"></add-menu-category>
     </div>
 
     <div style="width: calc(70vw - 550px); margin-left:15px;">

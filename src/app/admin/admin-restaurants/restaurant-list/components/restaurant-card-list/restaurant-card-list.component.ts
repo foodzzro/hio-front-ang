@@ -55,8 +55,8 @@ export class RestaurantCardListComponent implements OnInit {
     } 
   }
 
-  goToDetails() {
-     this.clicked.emit({ go: true})
+  goToDetails(id?: number) {
+     this.clicked.emit({ go: true, id: id})
   }
 
   getBackground(id) {

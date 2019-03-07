@@ -2,23 +2,20 @@ import { NgModule } from "@angular/core";
 import { NgxPaginationModule } from "ngx-pagination";
 import { RestaurantListComponent } from "./restaurant-list/restaurant-list.component";
 import { RestaurantDetailsComponent } from "./restaurant-details/restaurant-details.component";
-import { TabDetailsComponent } from "./restaurant-details/tab-details/tab-details.component";
 import { DeliveryAreaComponent } from "./restaurant-details/delivery-area/delivery-area.component";
-import { MenuDetailsComponent } from "./restaurant-details/menu-details/menu-details.component";
 import { DiscountCodeComponent } from "./restaurant-details/discount-code/discount-code.component";
 import { ManagerComponent } from "./restaurant-details/manager/manager.component";
 import { AdminRestaurantsRoutingModule } from "./admin-restaurants-routing.module";
 import { AdminSharedModulesModule } from "src/app/app-commons/admin/admin-shared-module.module";
-import { MenuSectionComponent } from './restaurant-details/menu-details/components/menu-section/menu-section.component';
-import { MenuItemComponent } from './restaurant-details/menu-details/components/menu-item/menu-item.component';
-import { MenuOptionComponent } from './restaurant-details/menu-details/components/menu-option/menu-option.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { TemplateMenuComponent } from './restaurant-details/menu-details/components/template-menu/template-menu.component';
-import { ExtraOptionListComponent } from "src/app/app-commons/admin/components/extra-option-list/extra-option-list.component";
-import { RestaurantCardListComponent } from './restaurant-list/components/restaurant-card-list/restaurant-card-list.component';
-import { AdminRestaurantsListResolve } from "./admin-restaurants.resolve";
+import { AdminRestaurantsListResolve, AdminRestaurantsItemResolve } from "./admin-restaurants.resolve";
 import {StickyModule} from 'ng2-sticky-kit';
+import { TabDetailsComponent } from "./restaurant-details/restaurant-tab-details/restaurant-tab-details.component";
+import { RestaurantDetailsService } from "./restaurant-details/services/restaurant-details.service";
+import { AddDeliveryAreaComponent } from "./restaurant-details/delivery-area/add-delivery-area.component";
+import { EditDeliveryAreaComponent } from "./restaurant-details/delivery-area/edit-delivery-area.component";
+import { RestaurantMenuModule } from "./restaurant-details/menu-details/restaurant-menu.module";
 
 
 @NgModule({
@@ -27,22 +24,21 @@ import {StickyModule} from 'ng2-sticky-kit';
         RestaurantDetailsComponent,
         TabDetailsComponent,
         DeliveryAreaComponent,
-        MenuDetailsComponent,
         DiscountCodeComponent,
-        ExtraOptionListComponent,
-        ManagerComponent, MenuSectionComponent, MenuItemComponent, MenuOptionComponent, TemplateMenuComponent, RestaurantCardListComponent,
+        ManagerComponent,
+        AddDeliveryAreaComponent,
+        EditDeliveryAreaComponent
     ],
     imports: [
         AdminSharedModulesModule,
         AdminRestaurantsRoutingModule,
-        NgxPaginationModule,
-        StickyModule,
-
-        DragDropModule,
-        MatExpansionModule,
+        RestaurantMenuModule,
+        NgxPaginationModule
     ],
     providers: [
-        AdminRestaurantsListResolve
+        AdminRestaurantsListResolve,
+        AdminRestaurantsItemResolve,
+        RestaurantDetailsService
     ]
 })
 export class AdminRestaurantModule {}

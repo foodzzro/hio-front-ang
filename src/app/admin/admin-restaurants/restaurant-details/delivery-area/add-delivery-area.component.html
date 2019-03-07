@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header" (click)="isCollapsed = !isCollapsed" (click)="onAddZone()">
+      Adauga zona de livrare
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted"> <i class="fa fa-plus fa-lg"></i></small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body" 
+         [formGroup]="deliveryForm"
+         [collapse]="!isCollapsed">
+
+         <div class="form-group" form-error="name" [form]="deliveryForm"> 
+            <label class="title" for="delivery_name">{{ 'admin.delivery_area.name' | translate }}</label>
+            <input type="text" formControlName="name" class="form-control form-control-sm" id="delivery_name" placeholder="Zone name">
+          </div>
+
+          <div class="form-group" form-error="charge" [form]="deliveryForm">
+            <label class="title" for="delivery_charge">{{ 'admin.delivery_area.delivery_charge' | translate }} (lei)</label>
+            <input type="text" formControlName="charge" class="form-control form-control-sm" id="delivery_charge" placeholder="10">
+          </div>
+
+          <div class="form-group">
+              <div class="area-buttons">                  
+                  <button aria-pressed="true" (click)="add()" style="float:right; margin:0" class="btn btn-block btn-outline-success active col-sm-3" type="button">{{ 'admin.save' | translate}}</button>
+              </div>                        
+          </div>
+    </div>
+  </div> 

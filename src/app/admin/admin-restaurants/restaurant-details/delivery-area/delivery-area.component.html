@@ -1,41 +1,24 @@
 <div class="area-container">
-    <div id="map"></div>
+  <div id="map"></div>
 
-    <div class="area-management">
-        <div class="animated fadeIn">
-            <div class="card">
-              <div class="card-header" (click)="isCollapsed = !isCollapsed">
-                Adauga zona de livrare
-                <div class="card-header-actions">
-                  <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
-                    <small className="text-muted">docs</small>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body"
-                   (collapsed)="collapsed($event)"
-                   (expanded)="expanded($event)"
-                   [collapse]="!isCollapsed">
+  <div class="area-management">
+    <div class="animated fadeIn"> 
 
-                   <div class="form-group ">
-                      <label class="title" for="delivery_name">{{ 'admin.delivery_area.name' | translate }}</label>
-                      <input type="text" class="form-control form-control-sm" id="delivery_name" placeholder="">
-                    </div>
-
-                    <div class="form-group ">
-                      <label class="title" for="delivery_charge">{{ 'admin.delivery_area.delivery_charge' | translate }}</label>
-                      <input type="text" class="form-control form-control-sm" id="delivery_charge" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="area-buttons">
-                            <button aria-pressed="true" style="float:left" class="btn btn-block btn-outline-danger active col-sm-3" type="button">{{'admin.delete' | translate}}</button>
-                            <button aria-pressed="true" (click)="clearShape()" style="float:right; margin:0" class="btn btn-block btn-outline-success active col-sm-3" type="button">{{ 'admin.save' | translate}}</button>
-                        </div>                        
-                    </div>
-              </div>
-            </div> 
-          </div>
+      <edit-delivery-area *ngFor="let item of deliveryZones; let i = index"
+          [restaurantId]="restaurantId"
+          [deliveryZone]="item"
+          [collapsed]="collapse[i]"
+          (removed)="onRemoveZone($event)"
+          (changeZone)="onChangeZone($event)">
+      </edit-delivery-area>
+      
+      <add-delivery-area 
+        [restaurantId]="restaurantId" 
+        [coordinates]="coordinates" 
+        [collapsed]="collapsed"
+        (addZone)="addZone()" 
+        (completed)="onAddComplete($event)">
+      </add-delivery-area>
     </div>
+  </div>
 </div>
-

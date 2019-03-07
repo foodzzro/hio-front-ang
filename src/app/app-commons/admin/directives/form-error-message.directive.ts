@@ -1,11 +1,12 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[form-error]'
 })
-export class FormErrorMessageDirective {
+export class FormErrorMessageDirective implements OnDestroy {
 
   @Input('form-error')
   type: string;
@@ -16,13 +17,17 @@ export class FormErrorMessageDirective {
   control: AbstractControl;
   private elRef: ElementRef;
 
+  private valueChangesSubscriber: Subscription;
+
   constructor(el: ElementRef, private translate: TranslateService, private renderer: Renderer2) {
     this.elRef = el;
   }
 
   ngOnInit() {
+
     this.control = this.form.get(this.type);
-    this.control.valueChanges.subscribe(value => {
+
+    this.valueChangesSubscriber = this.control.valueChanges.subscribe(value => {
       const childs = this.elRef.nativeElement.children;
 
       if (this.isFormInvalid && !this.canRemoveChild(childs)) {
@@ -35,7 +40,6 @@ export class FormErrorMessageDirective {
         this.renderer.removeChild(this.elRef.nativeElement, childs[childs.length - 1]);
         this.addErrorLabel();
       } else if ( this.FormControl.value == '' && !this.canRemoveChild(childs) ){
-        console.log("Heree");
         this.addErrorLabel();
       }
     })
@@ -77,6 +81,10 @@ export class FormErrorMessageDirective {
 
   get isFormInvalid() {
     return this.FormControl.invalid && this.FormControl.dirty
+  }
+
+  ngOnDestroy() {
+    this.valueChangesSubscriber.unsubscribe();
   }
 }
 
